@@ -10,9 +10,11 @@ public class Users {
     @Id
     private Long userId;
     private String password;
-    private String username;
+    private String userName;
     @OneToOne
     private Coffee thisweekCoffee;
+    @OneToOne
+    private Coffee secondCoffee;
     @OneToOne
     private Coffee lastweekCoffee;
 }
