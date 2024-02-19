@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@Nested
 public class UsersControllerTest {
 
     @Autowired
@@ -53,8 +55,9 @@ public class UsersControllerTest {
         System.out.println("1");
         mockMvc
                 .perform(post("/signUp")
+                        .with(csrf())
                         .content(json)
-                        .header("Access-Control-Allow-Origin", "POST")
+//                        .header("Access-Control-Allow-Origin", "POST")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
