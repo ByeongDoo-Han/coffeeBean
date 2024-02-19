@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class UsersSignUpResponseDto {
     private Long userId;
-    private String userName;
+    private String username;
 }

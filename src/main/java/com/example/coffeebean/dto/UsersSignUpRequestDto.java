@@ -1,9 +1,11 @@
 package com.example.coffeebean.dto;
 
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class UsersSignUpRequestDto {
-    private String userName;
-    private String password;
+    public String username;
+    public String password;
 }

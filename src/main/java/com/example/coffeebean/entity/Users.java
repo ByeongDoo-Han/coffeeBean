@@ -10,11 +10,19 @@ public class Users {
     @Id
     private Long userId;
     private String password;
-    private String userName;
+    private String username;
     @OneToOne
     private Coffee thisweekCoffee;
     @OneToOne
     private Coffee secondCoffee;
     @OneToOne
     private Coffee lastweekCoffee;
+
+    public Users() {
+
+    }
+    public Users(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }
