@@ -1,8 +1,11 @@
 package com.example.coffeebean.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UsersSignUpResponseDto {
     private Long userId;
     private String username;

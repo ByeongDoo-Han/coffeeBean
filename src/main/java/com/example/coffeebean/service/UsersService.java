@@ -1,10 +1,15 @@
 package com.example.coffeebean.service;
 
 import com.example.coffeebean.dto.UsersSignUpRequestDto;
+import com.example.coffeebean.dto.UsersSignUpResponseDto;
 import com.example.coffeebean.entity.Users;
-import org.springframework.http.ResponseEntity;
+
+import java.util.Optional;
 
 
 public interface UsersService {
-    ResponseEntity<Users> signUp(UsersSignUpRequestDto usersSignUpRequestDto);
+
+    UsersSignUpResponseDto signUp(UsersSignUpRequestDto usersSignUpRequestDto);
+
+    Optional<Users> findOne(Long userId);
 }
