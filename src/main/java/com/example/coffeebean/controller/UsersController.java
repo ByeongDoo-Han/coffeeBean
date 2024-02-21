@@ -1,5 +1,7 @@
 package com.example.coffeebean.controller;
 
+import com.example.coffeebean.dto.UsersSignInRequestDto;
+import com.example.coffeebean.dto.UsersSignInResponseDto;
 import com.example.coffeebean.dto.UsersSignUpRequestDto;
 import com.example.coffeebean.dto.UsersSignUpResponseDto;
 import com.example.coffeebean.service.UsersService;
@@ -18,5 +20,12 @@ public class UsersController {
     public ResponseEntity<UsersSignUpResponseDto> signUp(@RequestBody UsersSignUpRequestDto usersSignUpRequestDto){
         UsersSignUpResponseDto dto = usersService.signUp(usersSignUpRequestDto);
         return ResponseEntity.ok().body(dto);
+    }
+
+    @PostMapping("/signIn")
+    public ResponseEntity<UsersSignInResponseDto> signIn(@RequestBody UsersSignInRequestDto usersSignInRequestDto){
+        UsersSignInResponseDto dto = usersService.signIn(usersSignInRequestDto);
+        return ResponseEntity.ok().body(dto);
+
     }
 }

@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class UsersSignUpRequestDto {
-    public String username;
-    public String password;
+    private String username;
+    private String password;
 
     public Users toEntity(){
         return Users.builder().username(this.username).password(this.password).build();

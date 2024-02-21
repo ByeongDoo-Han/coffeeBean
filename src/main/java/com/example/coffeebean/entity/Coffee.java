@@ -12,6 +12,7 @@ import lombok.*;
 public class Coffee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "coffee_id", nullable = false)
     private Long coffeeId;
     @Column(name = "coffee_name", nullable = false)
     private String coffeeName;
