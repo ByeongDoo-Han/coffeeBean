@@ -34,9 +34,13 @@ public class UsersServiceImpl implements UsersService {
     public UsersSignInResponseDto signIn(UsersSignInRequestDto usersSignInRequestDto) {
         String username = usersSignInRequestDto.getUsername();
         Users foundUsers = usersRepository.findByUsername(username).orElseThrow(NoSuchElementException::new);
+
         return UsersSignInResponseDto.builder()
                 .userId(foundUsers.getUserId())
                 .username(foundUsers.getUsername())
+                .favoriteCoffee(foundUsers.getFavoriteCoffee())
+                .thisweekCoffee(foundUsers.getThisweekCoffee())
+                .lastweekCoffee(foundUsers.getLastweekCoffee())
                 .build();
     }
 
