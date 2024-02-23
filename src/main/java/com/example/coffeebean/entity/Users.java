@@ -7,8 +7,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -21,10 +19,10 @@ public class Users {
     private Long userId;
     @Column(name="password", nullable = false)
     private String password;
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
-    @OneToMany
-    private List<Coffee> favoriteCoffee;
+
+    private FavoriteId favoriteCoffee;
     @OneToOne
     private Coffee thisweekCoffee;
     @OneToOne

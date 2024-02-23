@@ -36,8 +36,8 @@ public class UsersServiceImpl implements UsersService {
 
         String username = usersSignInRequestDto.getUsername();
         Users foundUsers = usersRepository.findByUsername(username).orElseThrow(NoSuchElementException::new);
-
-        if(passwordEncoder.matches(usersSignInRequestDto.getPassword(), foundUsers.getPassword()));
+        System.out.println(foundUsers.getUserId());
+//        if(passwordEncoder.matches(usersSignInRequestDto.getPassword(), foundUsers.getPassword()));
         return UsersSignInResponseDto.builder()
                 .userId(foundUsers.getUserId())
                 .username(foundUsers.getUsername())
