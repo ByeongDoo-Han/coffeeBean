@@ -1,7 +1,10 @@
 package com.example.coffeebean.controller;
 
+import com.example.coffeebean.dto.UsersSignInRequestDto;
+import com.example.coffeebean.dto.UsersSignInResponseDto;
 import com.example.coffeebean.dto.UsersSignUpRequestDto;
 import com.example.coffeebean.dto.UsersSignUpResponseDto;
+import com.example.coffeebean.entity.Coffee;
 import com.example.coffeebean.service.UsersService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
@@ -44,9 +47,33 @@ public class UsersControllerTest {
                         .content(objectMapper.writeValueAsString(dto))
 //                        .header("Access-Control-Allow-Origin", "*")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.userId").exists())
                 .andExpect(jsonPath("$.username").exists())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("로그인 테스트")
+    void signIn() throws Exception {
+        UsersSignInRequestDto dto = UsersSignInRequestDto.builder()
+                .username("abc")
+                .password("1234")
+                .build();
+        given(usersService.signIn(any())).willReturn(
+                UsersSignInResponseDto.builder()
+                        .userId(1L)
+                        .username("abc")
+                        .lastweekCoffee(new Coffee())
+                        .secondCoffee(new Coffee())
+                        .thisweekCoffee(new Coffee())
+                        .build());
+
+
+        mockMvc.perform(post("/signIn")
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
                 .andDo(print());
     }
 }
