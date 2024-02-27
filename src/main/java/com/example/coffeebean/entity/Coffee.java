@@ -14,8 +14,6 @@ public class Coffee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "coffee_id", nullable = false)
     private Long coffeeId;
-    @ManyToOne
-    private FavoriteCoffee favoriteCoffee;
     @Column(name = "coffee_name", nullable = false)
     private String coffeeName;
     @Column(name = "coffee_category", nullable = false)

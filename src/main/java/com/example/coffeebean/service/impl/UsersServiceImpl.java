@@ -4,15 +4,14 @@ import com.example.coffeebean.dto.UsersSignInRequestDto;
 import com.example.coffeebean.dto.UsersSignInResponseDto;
 import com.example.coffeebean.dto.UsersSignUpRequestDto;
 import com.example.coffeebean.dto.UsersSignUpResponseDto;
-import com.example.coffeebean.entity.Coffee;
 import com.example.coffeebean.entity.Users;
+import com.example.coffeebean.repository.FavoriteCoffeeRepository;
 import com.example.coffeebean.repository.UsersRepository;
 import com.example.coffeebean.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -21,6 +20,7 @@ import java.util.Optional;
 public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository usersRepository;
+    private final FavoriteCoffeeRepository favoriteCoffeeRepository;
     @Override
     public UsersSignUpResponseDto signUp(UsersSignUpRequestDto usersSignUpRequestDto) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -39,11 +39,13 @@ public class UsersServiceImpl implements UsersService {
         String username = usersSignInRequestDto.getUsername();
         Users foundUsers = usersRepository.findByUsername(username).orElseThrow(NoSuchElementException::new);
         System.out.println(foundUsers.getUserId());
-//        if(passwordEncoder.matches(usersSignInRequestDto.getPassword(), foundUsers.getPassword()));
+        if(passwordEncoder.matches(usersSignInRequestDto.getPassword(), foundUsers.getPassword()));
+//        Long favoriteCoffeeId = foundUsers.getFavoriteCoffee().getFavoriteCoffeeId();
+//        List<FavoriteCoffee> favoriteCoffee = favoriteCoffeeRepository.findAllById(favoriteCoffeeId).orElseThrow(NoSuchElementException::new);
         return UsersSignInResponseDto.builder()
                 .userId(foundUsers.getUserId())
                 .username(foundUsers.getUsername())
-                .favoriteCoffee((List<Coffee>) foundUsers.getFavoriteCoffee())
+//                .favoriteCoffee(favoriteCoffee)
                 .thisweekCoffee(foundUsers.getThisweekCoffee())
                 .lastweekCoffee(foundUsers.getLastweekCoffee())
                 .build();

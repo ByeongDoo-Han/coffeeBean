@@ -21,9 +21,6 @@ public class Users {
     private String password;
     @Column(name = "username", nullable = false, unique = true)
     private String username;
-
-    @ManyToOne
-    private FavoriteCoffee favoriteCoffee;
     @OneToOne
     private Coffee thisweekCoffee;
     @OneToOne

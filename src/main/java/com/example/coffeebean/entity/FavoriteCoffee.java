@@ -8,11 +8,16 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "favorite_coffee")
 public class FavoriteCoffee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long favoriteCoffeeId;
-    private Long userId;
-    private Long coffeeId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private Users userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Coffee coffeeId;
 }

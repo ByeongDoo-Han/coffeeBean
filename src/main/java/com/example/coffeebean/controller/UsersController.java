@@ -17,15 +17,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsersController {
 
     private final UsersService usersService;
+
+    //회원가입
     @PostMapping("/signUp")
     public ResponseEntity<UsersSignUpResponseDto> signUp(@RequestBody UsersSignUpRequestDto usersSignUpRequestDto){
         UsersSignUpResponseDto dto = usersService.signUp(usersSignUpRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
+    //로그인
     @PostMapping("/signIn")
     public ResponseEntity<UsersSignInResponseDto> signIn(@RequestBody UsersSignInRequestDto usersSignInRequestDto){
         UsersSignInResponseDto dto = usersService.signIn(usersSignInRequestDto);
         return ResponseEntity.ok().body(dto);
     }
+
+    //로그아웃
+//    @GetMapping("/logout")
+//    public String logout(HttpSession session){
+//        session.invalidate();
+//        return "logoutSuccess";
+//    }
+    //이번주 커피 추가
+    @PostMapping("/addThisWeekCoffee")
+    public ResponseEntity<AddThisWeekCoffeeResponse> addThisWeekCoffee(@RequestBody AddThisWeek){
+
+    }
+
 }
