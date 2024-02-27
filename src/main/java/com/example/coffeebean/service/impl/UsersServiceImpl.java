@@ -4,6 +4,7 @@ import com.example.coffeebean.dto.UsersSignInRequestDto;
 import com.example.coffeebean.dto.UsersSignInResponseDto;
 import com.example.coffeebean.dto.UsersSignUpRequestDto;
 import com.example.coffeebean.dto.UsersSignUpResponseDto;
+import com.example.coffeebean.entity.Coffee;
 import com.example.coffeebean.entity.Users;
 import com.example.coffeebean.repository.UsersRepository;
 import com.example.coffeebean.service.UsersService;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -41,7 +43,7 @@ public class UsersServiceImpl implements UsersService {
         return UsersSignInResponseDto.builder()
                 .userId(foundUsers.getUserId())
                 .username(foundUsers.getUsername())
-                .favoriteCoffee(foundUsers.getFavoriteCoffee())
+                .favoriteCoffee((List<Coffee>) foundUsers.getFavoriteCoffee())
                 .thisweekCoffee(foundUsers.getThisweekCoffee())
                 .lastweekCoffee(foundUsers.getLastweekCoffee())
                 .build();

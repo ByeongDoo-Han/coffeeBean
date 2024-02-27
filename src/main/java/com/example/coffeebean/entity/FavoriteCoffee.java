@@ -8,13 +8,11 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class FavoriteId {
+public class FavoriteCoffee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long favoriteId;
-    @ManyToOne
-    private Users users;
-    @ManyToOne
-    private Coffee coffee;
+    private Long favoriteCoffeeId;
+    private Long userId;
+    private Long coffeeId;
 }
