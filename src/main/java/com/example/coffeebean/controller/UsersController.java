@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 @RequiredArgsConstructor
 public class UsersController {
@@ -27,8 +29,8 @@ public class UsersController {
 
     //로그인
     @PostMapping("/signIn")
-    public ResponseEntity<UsersSignInResponseDto> signIn(@RequestBody UsersSignInRequestDto usersSignInRequestDto){
-        UsersSignInResponseDto dto = usersService.signIn(usersSignInRequestDto);
+    public ResponseEntity<UsersSignInResponseDto> signIn(HttpServletRequest request, @RequestBody UsersSignInRequestDto usersSignInRequestDto) throws Exception {
+        UsersSignInResponseDto dto = usersService.signIn(request, usersSignInRequestDto);
         return ResponseEntity.ok().body(dto);
     }
 
@@ -38,10 +40,5 @@ public class UsersController {
 //        session.invalidate();
 //        return "logoutSuccess";
 //    }
-    //이번주 커피 추가
-    @PostMapping("/addThisWeekCoffee")
-    public ResponseEntity<AddThisWeekCoffeeResponse> addThisWeekCoffee(@RequestBody AddThisWeek){
-
-    }
 
 }
