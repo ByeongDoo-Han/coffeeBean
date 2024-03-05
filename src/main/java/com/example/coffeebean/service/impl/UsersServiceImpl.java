@@ -5,6 +5,7 @@ import com.example.coffeebean.dto.UsersSignInResponseDto;
 import com.example.coffeebean.dto.UsersSignUpRequestDto;
 import com.example.coffeebean.dto.UsersSignUpResponseDto;
 import com.example.coffeebean.entity.Users;
+import com.example.coffeebean.repository.FavoriteCoffeeRepository;
 import com.example.coffeebean.repository.UsersRepository;
 import com.example.coffeebean.service.UsersService;
 import lombok.RequiredArgsConstructor;

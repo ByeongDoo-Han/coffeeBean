@@ -20,7 +20,7 @@ public class UsersController {
     private final UsersService usersService;
 
     //회원가입
-    @PostMapping("/user/signUp")
+    @PostMapping("/signUp")
     public ResponseEntity<UsersSignUpResponseDto> signUp(@RequestBody UsersSignUpRequestDto usersSignUpRequestDto){
         UsersSignUpResponseDto dto = usersService.signUp(usersSignUpRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
@@ -55,9 +55,9 @@ public class UsersController {
 //        return "logoutSuccess";
 //    }
     //이번주 커피 추가
-//    @PostMapping("/addThisWeekCoffee")
-//    public ResponseEntity<AddThisWeekCoffeeResponse> addThisWeekCoffee(@RequestBody AddThisWeek){
-//
-//    }
+    @PostMapping("/addThisWeekCoffee")
+    public ResponseEntity<AddThisWeekCoffeeResponse> addThisWeekCoffee(@RequestBody AddThisWeek){
+
+    }
 
 }
