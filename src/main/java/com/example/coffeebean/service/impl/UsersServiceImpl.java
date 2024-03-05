@@ -5,7 +5,6 @@ import com.example.coffeebean.dto.UsersSignInResponseDto;
 import com.example.coffeebean.dto.UsersSignUpRequestDto;
 import com.example.coffeebean.dto.UsersSignUpResponseDto;
 import com.example.coffeebean.entity.Users;
-import com.example.coffeebean.repository.FavoriteCoffeeRepository;
 import com.example.coffeebean.repository.UsersRepository;
 import com.example.coffeebean.service.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,7 @@ import java.util.Optional;
 public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository usersRepository;
-    private final FavoriteCoffeeRepository favoriteCoffeeRepository;
+//    private final FavoriteCoffeeRepository favoriteCoffeeRepository;
     @Override
     public UsersSignUpResponseDto signUp(UsersSignUpRequestDto usersSignUpRequestDto) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -38,10 +37,12 @@ public class UsersServiceImpl implements UsersService {
 
         String username = usersSignInRequestDto.getUsername();
         Users foundUsers = usersRepository.findByUsername(username).orElseThrow(NoSuchElementException::new);
-        System.out.println(foundUsers.getUserId());
-        if(passwordEncoder.matches(usersSignInRequestDto.getPassword(), foundUsers.getPassword()));
+        if(passwordEncoder.matches(usersSignInRequestDto.getPassword(), foundUsers.getPassword())){
+        }else {
+
+        };
 //        Long favoriteCoffeeId = foundUsers.getFavoriteCoffee().getFavoriteCoffeeId();
-//        List<FavoriteCoffee> favoriteCoffee = favoriteCoffeeRepository.findAllById(favoriteCoffeeId).orElseThrow(NoSuchElementException::new);
+//        List<FavoriteCoffee> favoriteCoffee = favoriteCoffeeRepository.findFavoriteCoffeesByUserId(foundUsers.getUserId());
         return UsersSignInResponseDto.builder()
                 .userId(foundUsers.getUserId())
                 .username(foundUsers.getUsername())

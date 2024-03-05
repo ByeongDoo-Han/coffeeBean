@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -21,6 +24,8 @@ public class Users {
     private String password;
     @Column(name = "username", nullable = false, unique = true)
     private String username;
+    @OneToMany
+    private List<Coffee> likeCoffee = new ArrayList<>();
     @OneToOne
     private Coffee thisweekCoffee;
     @OneToOne
@@ -28,6 +33,9 @@ public class Users {
     @OneToOne
     private Coffee lastweekCoffee;
 
+    public void addLikeCoffee(Coffee likeCoffee){
+        this.likeCoffee.add(likeCoffee);
+    }
     @Builder
     public Users(String username, String password) {
         this.username = username;
